@@ -1,0 +1,16 @@
+service:
+  # Raise HTTP POST body cap above default (~32 MB)
+  max_request_size_mb: 256   # Qdrant 1.15.x key; verify in Configuration docs for your build [configuration]
+  enable_cors: true
+  http_port: 6333
+  grpc_port: 6334
+  host: 0.0.0.0
+
+# Persist all data under project folder
+storage:
+  storage_path: "C:\\Users\\cheer\\hcl\\qdrant-data"  # directory will be created if missing
+  on_disk_payload: true   # payload stored in RocksDB; no separate RocksDB install needed [payload storage]
+
+# Optional write-time optimizer; helps RAM when ingesting large amounts
+optimizers:
+  memmap_threshold: 20000  # align with indexing threshold by default [storage]
